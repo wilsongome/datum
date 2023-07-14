@@ -31,6 +31,21 @@ Ao encontrar essa ocorrência, ela irá retornar um JSON contendo a CHAVE, o HAS
 
 ```{"key_found":"eNr4XokY","hash":"00002727db2c47b9f6cb108f6a86a635","tries":35016}```
 
+## Configurar ambiente
+Para executar a aplicação você precisará:
+1) Clonar o repostório da aplicação no diretório do Apache ou outro de sua preferência
+2) ```cd /path/to/app``` Navegar até o diretório da aplicação 
+3) ```composer install``` Para instalar todas as dependências
+4) Ter o banco de dados MySQL em execução, com um usuário com permissão GRANT para criar as tabelas da aplicação.
+5) ```cp .env.example .env``` Criar o arquivo .ENV da aplicação, e cofigurar as informações de acesso ao banco de dados.
+6) ```php artisan migrate``` Para criar as tabelas da aplicação (Caso o banco definido no .ENV não exista, ele pergutará se quer criar, responda YES)
+7) Configurar o virtual host do apache apontando para a o diretório public da aplicação.
+    a) Alternativamente, você poderá também utilizar o serviço do próprio PHP ou do Artisan<br />
+    ```php -S localhost:8080 -t public``` <br />
+    ou <br />
+    ```php artisan serv```
+8) Agora basta acessar as **rotas** conforme instruções abaixo
+
 ## Rotas 
 
 **GET**
