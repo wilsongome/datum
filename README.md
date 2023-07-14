@@ -7,72 +7,45 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
-
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
-
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
-## PHP (Version utilized)
+## PHP (Version)
 
 PHP 8.1.2-1
 
-## MySQL (Version utilized)
+## MySQL (Version)
 
 8.0.33-0ubuntu0.22.04.2
 
-## SO (Version utilized)
+## SO (Version)
 
 Linux Ubuntu 22.04
+
+## About Application
+
+Essa aplicação possui uma rota que recebe uma string, e irá concatenar uma chave aleatória na string informada, e então gerar HASH MD5 disso. Ela seguirá fazendo isso até que seja gerado um hash iniciando por 4 zeros '0000', exemplo: 0000f7ed7e54e5fc085edf447e8bcc27
+
+Ao encontrar essa ocorrência, ela irá retornar um JSON contendo a CHAVE, o HASH e o número de tentativas, conforme abaixo:
+
+```{"key_found":"eNr4XokY","hash":"00002727db2c47b9f6cb108f6a86a635","tries":35016}```
+
+## Rotas 
+
+**GET**
+http://localhost/api/hash/generate/{string}
+Retorna 200, e um JSON em caso de sucesso
+```{"key_found":"eNr4XokY","hash":"00002727db2c47b9f6cb108f6a86a635","tries":35016}```
+
+Em caso de falha, vai retornar o código de erro e um JSON vazio
+
+
+**GET**
+http://localhost/api/hash/results/{page}?tries=N
+Retorna 200, e um JSON contendo a lista de resultado em caso de sucesso.
+O resultado está paginado em 20 itens, e o parâmetro **page** (path) da rota é obrigatório
+A rota também recebe um parâmetro opcional **tries** (query string, ex: /?tries=N). Esse parâmetro irá filtrar os resultados onde as tentativas de resolução forem MENORES que o número informado.
+A ordenação está seguindo a ordem de entrada no banco de dados
+
+Em caso de falha, vai retornar o código de erro e um JSON vazio
