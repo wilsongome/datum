@@ -23,9 +23,9 @@ PHP 8.1.2-1
 
 Linux Ubuntu 22.04
 
-## About Application
+## Sobre
 
-Essa aplicação possui uma rota que recebe uma string, e irá concatenar uma chave aleatória na string informada, e então gerar HASH MD5 disso. Ela seguirá fazendo isso até que seja gerado um hash iniciando por 4 zeros '0000', exemplo: 0000f7ed7e54e5fc085edf447e8bcc27
+Essa aplicação possui uma rota que recebe uma string, e irá concatenar uma chave aleatória na string informada, e então irá gerar HASH MD5 disso. Ela seguirá fazendo isso até que seja gerado um hash iniciando por 4 zeros '0000', exemplo: 0000f7ed7e54e5fc085edf447e8bcc27
 
 Ao encontrar essa ocorrência, ela irá retornar um JSON contendo a CHAVE, o HASH e o número de tentativas, conforme abaixo:
 
@@ -46,6 +46,8 @@ http://localhost/api/hash/results/{page}?tries=N
 Retorna 200, e um JSON contendo a lista de resultado em caso de sucesso.
 O resultado está paginado em 20 itens, e o parâmetro **page** (path) da rota é obrigatório
 A rota também recebe um parâmetro opcional **tries** (query string, ex: /?tries=N). Esse parâmetro irá filtrar os resultados onde as tentativas de resolução forem MENORES que o número informado.
-A ordenação está seguindo a ordem de entrada no banco de dados
+A ordenação está seguindo a ordem de entrada no banco de dados.
+Exemplo de retorno contendo 2 resultados:
+```[{"batch":"2023-07-14 13:12:17","order_number":1,"str_in":"teste","key_found":"R78n2WOi"},{"batch":"2023-07-14 13:12:17","order_number":2,"str_in":"00008a38c1f0c5d8de967c3b14a44db7","key_found":"LuSf8D4V"}]```
 
 Em caso de falha, vai retornar o código de erro e um JSON vazio (Exemplo 400, para parâmetros inválidos)
