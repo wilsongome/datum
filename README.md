@@ -48,4 +48,4 @@ O resultado está paginado em 20 itens, e o parâmetro **page** (path) da rota �
 A rota também recebe um parâmetro opcional **tries** (query string, ex: /?tries=N). Esse parâmetro irá filtrar os resultados onde as tentativas de resolução forem MENORES que o número informado.
 A ordenação está seguindo a ordem de entrada no banco de dados
 
-Em caso de falha, vai retornar o código de erro e um JSON vazio
+Em caso de falha, vai retornar o código de erro e um JSON vazio (Exemplo 400, para parâmetros inválidos)
