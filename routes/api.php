@@ -23,4 +23,4 @@ Route::middleware(['throttle:hash-generate'])->group(function(){
     Route::get('/hash/generate/{str}', [HashHandlerController::class, 'generate']);
 });
 
-
+Route::get('/hash/results/{page}', [HashHandlerController::class, 'results']);
