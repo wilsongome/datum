@@ -1,13 +1,13 @@
 <?php 
-namespace App\Domain;
+namespace App\Domain\Hash;
 
 use Illuminate\Support\Str;
 
 class HashHandler{
 
-    private $key_length = 8;
-    private $prefix = '0000';
-    private $str;
+    private int $key_length = 8;
+    private string $prefix = '0000';
+    private string $str;
 
     public function __construct(string $str)
     {

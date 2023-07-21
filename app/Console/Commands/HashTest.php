@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Domain\Consumer;
+use App\Domain\Consumer\Consumer;
 use Illuminate\Console\Command;
 
 class HashTest extends Command

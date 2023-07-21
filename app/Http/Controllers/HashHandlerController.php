@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Validator;
-use App\Domain\HashHandler;
+use App\Domain\Hash\HashHandler;
 use App\Models\RequestResult;
 use Exception;
 use Illuminate\Http\Request;
